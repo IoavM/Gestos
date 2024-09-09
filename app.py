@@ -9,7 +9,7 @@ import platform
 st.write("Versión de Python:", platform.python_version())
 
 model = load_model('keras_model.h5')
-model2 = load_model('keras_model.h5')
+
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 st.title("Reconocimiento de Imágenes")
@@ -23,10 +23,6 @@ with st.sidebar:
 img_file_buffer = st.camera_input("Toma una Foto")
 
 # Selector de modo
-opcion = st.selectbox("Modo:", ("Detecta Cara", "Detecta Gesto"))
-
-# Lógica para "Detecta Cara"
-if opcion == "Detecta Cara":
     if img_file_buffer is not None:
         # Leer la imagen desde el buffer
         img = Image.open(img_file_buffer)
@@ -52,27 +48,3 @@ if opcion == "Detecta Cara":
             st.header(f'Ioav, con probabilidad: {prediction[0][1]:.2f}')
 
 # Lógica para "Detecta Gesto"
-if opcion == "Detecta Gesto":
-    if img_file_buffer is not None:
-        # Leer la imagen desde el buffer
-        img = Image.open(img_file_buffer)
-        
-        # Redimensionar la imagen a 224x224
-        newsize = (224, 224)
-        img = img.resize(newsize)
-        
-        # Convertir la imagen en un array de numpy
-        img_array = np.array(img)
-        
-        # Normalizar la imagen
-        normalized_image_array = (img_array.astype(np.float32) / 127.0) - 1
-        data[0] = normalized_image_array
-
-        # Realizar la inferencia con el modelo de detección de gestos
-        prediction = model2.predict(data)
-
-        # Mostrar los resultados de la predicción
-        if prediction[0][0] > 0.5:
-            st.header(f'Andrea, con probabilidad: {prediction[0][0]:.2f}')
-        if prediction[0][1] > 0.5:
-            st.header(f'Ioav, con probabilidad: {prediction[0][1]:.2f}')
