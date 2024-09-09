@@ -28,7 +28,7 @@ img_file_buffer = st.camera_input("Toma una Foto")
 
 opcion = st.selectbox(   "Modo: ",("Detecta Cara", "Detecta Gesto"))
 
- if opcion=="Detecta Cara :
+ if opcion=="Detecta Cara" :
     
 
    if img_file_buffer is not None:
