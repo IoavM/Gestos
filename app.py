@@ -1,10 +1,8 @@
 import streamlit as st
 import cv2
 import numpy as np
-#from PIL import Image
 from PIL import Image as Image, ImageOps as ImagOps
 from keras.models import load_model
-
 import platform
 
 # Muestra la versión de Python junto con detalles adicionales
@@ -15,73 +13,66 @@ model2 = load_model('keras_model2.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 st.title("Reconocimiento de Imágenes")
-#st.write("Versión de Python:", platform.python_version())
 image = Image.open('OIG5.jpg')
 st.image(image, width=350)
+
 with st.sidebar:
-    st.subheader("Usando un modelo entrenado en teachable Machine puedes Usarlo en esta app para identificar")
+    st.subheader("Usando un modelo entrenado en Teachable Machine puedes usarlo en esta app para identificar")
 
-    
-
-
+# Opción para subir una imagen desde la cámara
 img_file_buffer = st.camera_input("Toma una Foto")
 
-opcion = st.selectbox(   "Modo: ",("Detecta Cara", "Detecta Gesto"))
+# Selector de modo
+opcion = st.selectbox("Modo:", ("Detecta Cara", "Detecta Gesto"))
 
-if opcion== "Detecta Cara" :
-    
+# Lógica para "Detecta Cara"
+if opcion == "Detecta Cara":
+    if img_file_buffer is not None:
+        # Leer la imagen desde el buffer
+        img = Image.open(img_file_buffer)
+        
+        # Redimensionar la imagen a 224x224 (como el tamaño esperado por el modelo)
+        newsize = (224, 224)
+        img = img.resize(newsize)
+        
+        # Convertir la imagen en un array de numpy
+        img_array = np.array(img)
+        
+        # Normalizar la imagen
+        normalized_image_array = (img_array.astype(np.float32) / 127.0) - 1
+        data[0] = normalized_image_array
 
-   if img_file_buffer is not None:
-    
-    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-   #To read image file buffer as a PIL Image:
-    img = Image.open(img_file_buffer)
+        # Realizar la inferencia con el modelo de detección de caras
+        prediction = model.predict(data)
 
-    newsize = (224, 224)
-    img = img.resize(newsize)
-    # To convert PIL Image to numpy array:
-    img_array = np.array(img)
+        # Mostrar los resultados de la predicción
+        if prediction[0][0] > 0.5:
+            st.header(f'Andrea, con probabilidad: {prediction[0][0]:.2f}')
+        if prediction[0][1] > 0.5:
+            st.header(f'Ioav, con probabilidad: {prediction[0][1]:.2f}')
 
-    # Normalize the image
-    normalized_image_array = (img_array.astype(np.float32) / 127.0) - 1
-    # Load the image into the array
-    data[0] = normalized_image_array
+# Lógica para "Detecta Gesto"
+if opcion == "Detecta Gesto":
+    if img_file_buffer is not None:
+        # Leer la imagen desde el buffer
+        img = Image.open(img_file_buffer)
+        
+        # Redimensionar la imagen a 224x224
+        newsize = (224, 224)
+        img = img.resize(newsize)
+        
+        # Convertir la imagen en un array de numpy
+        img_array = np.array(img)
+        
+        # Normalizar la imagen
+        normalized_image_array = (img_array.astype(np.float32) / 127.0) - 1
+        data[0] = normalized_image_array
 
-    # run the inference
-    prediction = model.predict(data)
-    print(prediction)
-    if prediction[0][0]>0.5:
-      st.header('Andrea, con Probabilidad: '+str( prediction[0][0]) )
-    if prediction[0][1]>0.5:
-      st.header('Ioav, con Probabilidad: '+str( prediction[0][1]))
-    #if prediction[0][2]>0.5:
-    # st.header('Derecha, con Probabilidad: '+str( prediction[0][2]))
+        # Realizar la inferencia con el modelo de detección de gestos
+        prediction = model2.predict(data)
 
-if opcion=="Detecta Gesto" :
-
-    
-   if img_file_buffer is not None:
-    
-    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-   #To read image file buffer as a PIL Image:
-    img = Image.open(img_file_buffer)
-
-    newsize = (224, 224)
-    img = img.resize(newsize)
-    # To convert PIL Image to numpy array:
-    img_array = np.array(img)
-
-    # Normalize the image
-    normalized_image_array = (img_array.astype(np.float32) / 127.0) - 1
-    # Load the image into the array
-    data[0] = normalized_image_array
-
-    # run the inference
-    prediction = model2.predict(data)
-    print(prediction)
-    if prediction[0][0]>0.5:
-      st.header('Andrea, con Probabilidad: '+str( prediction[0][0]) )
-    if prediction[0][1]>0.5:
-      st.header('Ioav, con Probabilidad: '+str( prediction[0][1]))
-
-
+        # Mostrar los resultados de la predicción
+        if prediction[0][0] > 0.5:
+            st.header(f'Andrea, con probabilidad: {prediction[0][0]:.2f}')
+        if prediction[0][1] > 0.5:
+            st.header(f'Ioav, con probabilidad: {prediction[0][1]:.2f}')
