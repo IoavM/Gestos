@@ -13,7 +13,7 @@ import platform
 st.write("Versión de Python:", platform.python_version())
 
 model = load_model('keras_model.h5')
-model2 = load_model('keras_model2.h5')
+
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 st.title("Reconocimiento de Imágenes")
