@@ -1,13 +1,14 @@
 import streamlit as st
 import cv2
 import numpy as np
-from PIL import Image as Image, ImageOps as ImagOps
+from PIL import Image
 from keras.models import load_model
 import platform
 
 # Muestra la versión de Python junto con detalles adicionales
 st.write("Versión de Python:", platform.python_version())
 
+# Carga de modelos
 model = load_model('keras_model.h5')
 model2 = load_model('keras_model2.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
@@ -16,16 +17,16 @@ st.title("Reconocimiento de Imágenes")
 image = Image.open('OIG5.jpg')
 st.image(image, width=350)
 
+# Barra lateral con subheader
 with st.sidebar:
-    st.subheader("Usando un modelo entrenado en Teachable Machine puedes usarlo en esta app para identificar")
+    st.subheader("Usa un modelo entrenado en Teachable Machine para identificar")
 
-
+# Selector de modo
 opcion = st.selectbox("Modo:", ("Detecta Cara", "Detecta Gesto"))
 
-
+# Entrada de imagen desde la cámara
 img_file_buffer = st.camera_input("Toma una Foto")
 
-# Selector de mo
 # Lógica para "Detecta Cara"
 if opcion == "Detecta Cara":
     if img_file_buffer is not None:
@@ -76,4 +77,4 @@ if opcion == "Detecta Gesto":
         if prediction[0][0] > 0.5:
             st.header(f'Tienes la Mano Abierta')
         if prediction[0][1] > 0.5:
-            st.header(f'Tienes la Mano cerrada')
+            st.header(f'Tienes la Mano Cerrada')
