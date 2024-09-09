@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 import cv2
 import numpy as np
@@ -29,7 +27,7 @@ with st.sidebar:
 img_file_buffer = st.camera_input("Toma una Foto")
     
 
-   if img_file_buffer is not None:
+if img_file_buffer is not None:
     
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
    #To read image file buffer as a PIL Image:
