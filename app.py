@@ -48,9 +48,9 @@ if opcion == "Detecta Cara":
 
         # Mostrar los resultados de la predicción
         if prediction[0][0] > 0.5:
-            st.header(f'Andrea, con probabilidad: {prediction[0][0]:.2f}')
+            st.header(f'Hola Aleja')
         if prediction[0][1] > 0.5:
-            st.header(f'Ioav, con probabilidad: {prediction[0][1]:.2f}')
+            st.header(f'Hola Ioav')
 
 # Lógica para "Detecta Gesto"
 if opcion == "Detecta Gesto":
@@ -74,6 +74,6 @@ if opcion == "Detecta Gesto":
 
         # Mostrar los resultados de la predicción
         if prediction[0][0] > 0.5:
-            st.header(f'Mano Abierta, con probabilidad: {prediction[0][0]:.2f}')
+            st.header(f'Tienes la Mano Abierta')
         if prediction[0][1] > 0.5:
-            st.header(f'Mano cerrada, con probabilidad: {prediction[0][1]:.2f}')
+            st.header(f'Tienes la Mano cerrada')
