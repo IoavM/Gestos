@@ -19,12 +19,13 @@ st.image(image, width=350)
 with st.sidebar:
     st.subheader("Usando un modelo entrenado en Teachable Machine puedes usarlo en esta app para identificar")
 
-# Opción para subir una imagen desde la cámara
-img_file_buffer = st.camera_input("Toma una Foto")
 
-# Selector de modo
 opcion = st.selectbox("Modo:", ("Detecta Cara", "Detecta Gesto"))
 
+
+img_file_buffer = st.camera_input("Toma una Foto")
+
+# Selector de mo
 # Lógica para "Detecta Cara"
 if opcion == "Detecta Cara":
     if img_file_buffer is not None:
