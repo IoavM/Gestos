@@ -28,7 +28,7 @@ img_file_buffer = st.camera_input("Toma una Foto")
 
 opcion = st.selectbox(   "Modo: ",("Detecta Cara", "Detecta Gesto"))
 
- if opcion=="Detecta Cara" :
+if opcion== "Detecta Cara" :
     
 
    if img_file_buffer is not None:
@@ -56,7 +56,9 @@ opcion = st.selectbox(   "Modo: ",("Detecta Cara", "Detecta Gesto"))
       st.header('Ioav, con Probabilidad: '+str( prediction[0][1]))
     #if prediction[0][2]>0.5:
     # st.header('Derecha, con Probabilidad: '+str( prediction[0][2]))
+
 if opcion=="Detecta Gesto" :
+
     
    if img_file_buffer is not None:
     
