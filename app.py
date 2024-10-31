@@ -59,8 +59,8 @@ if img_file_buffer is not None:
     if prediction[0][0] > 0.5:
         mensaje = "Tienes la Mano Abierta"
         st.header(mensaje)
-        publicar_mensaje("Ioav_robot", mensaje)
+        publicar_mensaje("Ioav_Voz", mensaje)
     elif prediction[0][1] > 0.5:
         mensaje = "Tienes la Mano Cerrada"
         st.header(mensaje)
-        publicar_mensaje("Ioav_robot", mensaje)
+        publicar_mensaje("Ioav_Voz", mensaje)
