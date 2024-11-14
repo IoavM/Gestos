@@ -7,6 +7,11 @@ import platform
 import paho.mqtt.client as paho
 import json
 
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+local_css("style.css")
 # Configuración del cliente MQTT
 def on_publish(client, userdata, result):
     print("El dato ha sido publicado \n")
