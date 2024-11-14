@@ -38,7 +38,7 @@ st.title("Modo del Robot")
 
 # Barra lateral con subheader
 with st.sidebar:
-    st.subheader("Usa un modelo entrenado en Teachable Machine para identificar")
+    st.text("El robot espera, quieto, mientras su luz oscila entre rojo y azul, como un susurro de dos naturalezas en conflicto. En el reflejo de su núcleo, el usuario ve el poder de una elección: activar el modo de ataque, liberando la precisión de un guerrero de metal, o elegir el modo tranquilo, dejando que el robot observe en paz, sin tensiones, como un testigo sereno.")
 
 # Entrada de imagen desde la cámara
 img_file_buffer = st.camera_input("Toma una Foto")
