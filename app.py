@@ -19,7 +19,7 @@ def on_publish(client, userdata, result):
 def on_message(client, userdata, message):
     st.write("Mensaje recibido:", str(message.payload.decode("utf-8")))
 
-broker = "157.230.214.127"  # Dirección del broker MQTT
+broker = "broker.mqttdashboard.com"  # Dirección del broker MQTT
 port = 1883
 client = paho.Client("Ioav_Mizra")
 client.on_publish = on_publish
