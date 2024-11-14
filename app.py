@@ -38,8 +38,7 @@ st.title("Modo del Robot")
 
 # Barra lateral con subheader
 with st.sidebar:
-    st.text("El robot espera, quieto, mientras su luz oscila entre rojo y azul, como un susurro de dos naturalezas en conflicto. En el reflejo de su núcleo, el usuario ve el poder de una elección: activar el modo de ataque, liberando la precisión de un guerrero de metal, o elegir el modo tranquilo, dejando que el robot observe en paz, sin tensiones, como un testigo sereno.")
-
+    st.text('El robot está listo para lo que decidas. Puedes activar su modo de ataque, donde reaccionará con rapidez y fuerza, o ponerlo en modo tranquilo, en el que observará el entorno sin intervenir. Tú tienes el control: elige el modo según lo que necesites.')
 # Entrada de imagen desde la cámara
 img_file_buffer = st.camera_input("Toma una Foto")
 
