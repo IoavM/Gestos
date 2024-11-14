@@ -27,7 +27,7 @@ client.on_message = on_message
 client.connect(broker, port)
 
 # Mostrar versión de Python y detalles adicionales
-st.write("Versión de Python:", platform.python_version())
+#st.write("Versión de Python:", platform.python_version())
 
 # Carga de modelos
 model2 = load_model('keras_model2.h5')
