@@ -1,0 +1,2 @@
+0 Defensa
+1 Ataque
