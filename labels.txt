@@ -1,2 +1,2 @@
-0 Anakin
-1 Ioav
+0 Defensa
+1 Ataque
