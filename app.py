@@ -30,7 +30,7 @@ client.connect(broker, port)
 #st.write("Versión de Python:", platform.python_version())
 
 # Carga de modelos
-model2 = load_model('keras_model2.h5')
+model2 = load_model('keras_model3.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 st.title("Modo del Robot")
