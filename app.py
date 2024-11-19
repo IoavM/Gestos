@@ -21,7 +21,7 @@ def on_message(client, userdata, message):
         
 
 
-broker="157.230.214.127"
+broker="broker.emqx.io"
 port=1883
 client1= paho.Client("Ioav")
 client1.on_message = on_message
@@ -60,5 +60,5 @@ if img_file_buffer is not None:
       time.sleep(0.2)
     if prediction[0][1]>0.3:
       st.header('Cerrando')
-      client1.publish("Ioav_Voz","{'mensaje': 'Cierra'}",qos=0, retain=False)
+      client1.publish("Ioav_Voz","{'mensaje': 'Ataque'}",qos=0, retain=False)
       time.sleep(0.2)  
