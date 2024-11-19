@@ -60,10 +60,10 @@ if img_file_buffer is not None:
 
     # Mostrar y enviar los resultados de la predicción
     if prediction[0][0] > 0.5:
-        mensaje = "Tienes la Mano Abierta"
+        mensaje = "Mpdo Defensa"
         st.header(mensaje)
         publicar_mensaje("Ioav_Voz", mensaje)
     elif prediction[0][1] > 0.5:
-        mensaje = "Tienes la Mano Cerrada"
+        mensaje = "Modo Ataque"
         st.header(mensaje)
         publicar_mensaje("Ioav_Voz", mensaje)
