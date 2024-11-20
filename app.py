@@ -28,7 +28,7 @@ client1.on_message = on_message
 client1.on_publish = on_publish
 client1.connect(broker,port)
 
-model = load_model('keras_model3.h5')
+model = load_model('keras_model.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 st.title("Modo Robot")
@@ -61,4 +61,8 @@ if img_file_buffer is not None:
     if prediction[0][1]>0.3:
       st.header('Modo Ataque 🗡️')
       client1.publish("Ioav_Voz","{'mensaje': 'Ataque'}",qos=0, retain=False)
+      time.sleep(0.2)  
+    if prediction[0][2]>0.3:
+      st.header('Secuencia de apagado 😴')
+      client1.publish("Ioav_Voz","{'mensaje': 'Apagar'}",qos=0, retain=False)
       time.sleep(0.2)  
