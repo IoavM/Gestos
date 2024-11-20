@@ -31,7 +31,7 @@ client1.connect(broker,port)
 model = load_model('keras_model3.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-st.title("Cerradura Inteligente")
+st.title("Modo Robot")
 
 img_file_buffer = st.camera_input("Toma una Foto")
 
@@ -55,10 +55,10 @@ if img_file_buffer is not None:
     prediction = model.predict(data)
     print(prediction)
     if prediction[0][0]>0.3:
-      st.header('Abriendo')
+      st.header('Modo Defensa 🛡️')
       client1.publish("Ioav_Voz","{'mensaje': 'Defensa'}",qos=0, retain=False)
       time.sleep(0.2)
     if prediction[0][1]>0.3:
-      st.header('Cerrando')
+      st.header('Modo Ataque 🗡️')
       client1.publish("Ioav_Voz","{'mensaje': 'Ataque'}",qos=0, retain=False)
       time.sleep(0.2)  
