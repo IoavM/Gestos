@@ -54,15 +54,15 @@ if img_file_buffer is not None:
     # run the inference
     prediction = model.predict(data)
     print(prediction)
-    if prediction[0][0]>0.8:
+    if prediction[0][0]>0.6:
       st.header('Modo Defensa 🛡️')
       client1.publish("Ioav_Voz","{'mensaje': 'Defensa'}",qos=0, retain=False)
       time.sleep(0.2)
-    if prediction[0][1]>0.8:
+    if prediction[0][1]>0.6:
       st.header('Modo Ataque 🗡️')
       client1.publish("Ioav_Voz","{'mensaje': 'Ataque'}",qos=0, retain=False)
       time.sleep(0.2)  
-    if prediction[0][2]>0.8:
+    if prediction[0][2]>0.6:
       st.header('Secuencia de apagado 😴')
       client1.publish("Ioav_Voz","{'mensaje': 'Apagar'}",qos=0, retain=False)
       time.sleep(0.2)  
